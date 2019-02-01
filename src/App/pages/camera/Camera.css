@@ -1,0 +1,23 @@
+.camera-body {
+  height: 100vh !important;
+  top: 0;
+  margin-left: 120px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.stream-container img {
+  padding-top: 120px;
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .camera-body  {
+    margin-left: 0;
+  }
+  .stream-container img {
+    width: 90%;
+  }
+}

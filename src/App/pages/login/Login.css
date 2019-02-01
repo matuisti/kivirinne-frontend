@@ -1,0 +1,113 @@
+.login-body {
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+.header {
+  --background-color: #4D7C8A;
+  background-color: rgba(54, 65, 80, 1);
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.header h1 {
+  color: white;
+  margin: 0;
+  padding-left: 10px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-size: 24px;
+}
+.form-body {
+  border-radius: 0px 0px 7px 7px;
+  --background-color: rgba(212, 215, 217);
+  border-width: 0px 1px 1px 1px;
+  --border-color: #008DD5;
+  border-color: rgba(54, 65, 80, 1);
+  border-style: solid;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: 15px 40px 40px 40px;
+}
+
+.form-body label {
+  float: left;
+  font-weight: 400;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.form-header {
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  width: 500px;
+  margin-top: 70px;
+  --background-color: #008DD5;
+  background-color: rgba(54, 65, 80, 1);
+  border-radius: 7px 7px 0px 0px;
+  --color: 008DD5;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  display: inline-block;
+  border: 1px solid;
+  border-color: #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: initial;
+  transition: border-color 200ms linear;
+}
+
+.form-input:hover {
+    transition: border-color 200ms linear;
+    border-color: #2e70e7;
+}
+
+.form-btn {
+    width: 100%;
+    --background-color: #008DD5;
+    background-color: rgba(54, 65, 80, 1);
+    font-size: 20px;
+    color: white;
+    padding: 8px 20px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+
+.form-btn:hover {
+    background-color: #1e4ea3;
+    transition: background-color 200ms linear;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-body {
+    width: 100%;
+    border: none;
+    height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+  }
+  .form-header {
+    --display: none;
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+  }
+}

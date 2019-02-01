@@ -1,0 +1,51 @@
+.sidebar {
+  padding-top: 75px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  background-color: rgba(54, 65, 80, 1);
+  width: 180px;
+  overflow-x: hidden;
+  box-shadow: 4px 6px 8px 0px rgba(0,0,0,0.2);
+}
+
+.sidebar i {
+  text-align: center;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  font-size: 17px;
+  float: left;
+  margin-top: 0px;
+  padding-top: 4px;
+  margin-left: 10px;
+  padding-right: 8px;
+}
+
+.sidebar-btn {
+  padding: 6px 4px 6px 6px;
+  width: 100%;
+  font-size: 18px;
+  color: white;
+  display: inline-block;
+  height: 40px;
+  text-decoration: none;
+}
+
+.sidebar-btn:hover {
+  text-decoration: none;
+  color: lightGrey;
+}
+
+.sidebar-btn-active {
+  background-color: rgba(255,255,255,0.1);
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}

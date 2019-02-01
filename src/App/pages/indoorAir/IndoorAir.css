@@ -1,0 +1,107 @@
+.body {
+  --height: 100vh !important;
+  margin-left: 180px;
+}
+
+.chart-row1, .chart-row2 {
+  margin-top: 70px;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart-column {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px;
+}
+
+.chart-row1 .chart-column .chart {
+  width: 100%;
+  height: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.chart-row2 .chart-column .chart {
+  width: 100%;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.chart-controller .chart-column .controller {
+  width: 98%;
+  height: 80px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.controller .date-picker{
+  padding: 8px;
+}
+
+.react-datepicker {
+  font-size: 1.3rem !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+  padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+  top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+  margin: 0.5rem !important;
+}
+
+.side {
+  width: 33.3%;
+}
+
+.middle {
+  width: 70%;
+}
+
+.full {
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .chart-row1 .chart-column.side, .chart-row1 .chart-column.middle {
+    width: 100%;
+  }
+  .chart-row2 .chart-column.side, .chart-row2 .chart-column.middle {
+    width: 100%;
+  }
+  .body {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .chart-row1 .chart-column.full {
+    width: 100%;
+  }
+}
