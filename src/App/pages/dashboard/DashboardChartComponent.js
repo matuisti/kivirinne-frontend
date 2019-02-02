@@ -6,13 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
-const DashboardChartComponent = ({loaded, chartName, title, chartData}) => {
+const DashboardChartComponent = ({loaded, chartName, title, chartData, unit, icon}) => {
   return (
     <div className="plain-chart-column plain">
       <div className="chart-text">
         <p>{chartData[chartData.length - 1]}</p>
+        <p>{unit}</p>
         <p>{title}</p>
-        <p><FontAwesomeIcon icon="temperature-high"/></p>
+        <p><FontAwesomeIcon icon={icon}/></p>
       </div>
       <div className="chart">
         {

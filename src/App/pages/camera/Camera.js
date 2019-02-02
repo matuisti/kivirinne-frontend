@@ -20,7 +20,6 @@ class Camera extends Component {
   render() {
     return (
       <div className="camera-body">
-        <Navbar/>
         <div className="stream-container">
           <img src="http://192.168.0.117:8082/?action=stream"/>
         </div>

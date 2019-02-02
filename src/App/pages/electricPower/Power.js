@@ -6,7 +6,7 @@ import AuthService from '../../Authentication/AuthService';
 import QueryFunctions from '../../components/QueryFunctions';
 import Highcharts from 'highcharts/highstock';
 
-class Home extends Component {
+class Power extends Component {
   constructor(props) {
     super(props);
     this.Auth = new AuthService();
@@ -75,72 +75,19 @@ class Home extends Component {
   render() {
     return (
       <div className="body">
-      <Navbar/>
-      <div className="chart-row2">
-        <div className="chart-column side">
-          <div className="chart">
-            {
-              !this.state.pieLoad
-                ? <div className="Graph-loader"/>
-              : <PieChart container="pieChart2" type="Chart" title="Olohuone" data={this.state.pieChartData} />
-            }
-          </div>
-        </div>
-        <div className="chart-column side">
-          <div className="chart">
-            {
-              !this.state.pieLoad
-                ? <div className="Graph-loader"/>
-              : <PieChart container="pieChart3" type="Chart" title="Makuuhuone" data={this.state.pieChartData} />
-            }
-          </div>
-
-        </div>
-        <div className="chart-column side">
-          <div className="chart">
-            {
-              !this.state.pieLoad
-                ? <div className="Graph-loader"/>
-              : <PieChart container="pieChart4" type="Chart" title="Keittiö" data={this.state.pieChartData} />
-            }
-          </div>
-        </div>
-      </div>
       <div className="chart-row1">
         <div className="chart-column full">
           <div className="chart">
             {
               !this.state.lineLoad
                 ? <div className="Graph-loader"/>
-              : <LineChart container="lineChart1" type="Chart" title="Sisäilma" base="full" data={this.state.lineChartData} />
+              : <LineChart container="ElectricMeterChart" type="Chart" title="Sähkönkulutus" base="full" data={this.state.lineChartData} />
             }
           </div>
-        </div>
-      </div>
-      <div className="chart-row2">
-        <div className="chart-column side">
-          <div className="chart"></div>
-        </div>
-        <div className="chart-column side">
-          <div className="chart"></div>
-        </div>
-        <div className="chart-column side">
-          <div className="chart"></div>
-        </div>
-      </div>
-      <div className="chart-row2">
-        <div className="chart-column side">
-          <div className="chart"></div>
-        </div>
-        <div className="chart-column side">
-          <div className="chart"></div>
-        </div>
-        <div className="chart-column side">
-          <div className="chart"></div>
         </div>
       </div>
     </div>
     );
   }
 }
-export default Home;
+export default Power;

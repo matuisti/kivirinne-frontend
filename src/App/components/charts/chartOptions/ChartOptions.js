@@ -11,7 +11,7 @@ function highchartsLaquageOptions() {
       months: ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Keäskuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu'],
       weekdays: ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'],
       shortMonths: ['Tam', 'Hel', 'Maa', 'Huh', 'Tou', 'Kes', 'Hei', 'Elo', 'Syy', 'Lok', 'Mar', 'Jou'],
-      resetZoom: "Nollaa zoom"
+      resetZoom: "Nollaa suurennus"
     }
   });
 }
@@ -25,7 +25,7 @@ function lineChartOptions(params) {
         position: {
           align: 'right',
           x: 0,
-          y: -15
+          y: -25
         },
         theme: {
           fill: 'white',

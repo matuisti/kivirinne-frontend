@@ -19,7 +19,6 @@ class Camera extends Component {
   render() {
     return (
       <div>
-        <Navbar/>
         <h1>Sensorit</h1>
       </div>
     );

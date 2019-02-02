@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/Navbar';
 import LineChart from '../../components/charts/LineChart';
-import PieChart from '../../components/charts/PieChart';
 import CircularProgressBar from '../../components/charts/CircularProgressBar';
 import AuthService from '../../Authentication/AuthService';
 import QueryFunctions from '../../components/QueryFunctions';
 import './IndoorAir.css';
-import 'react-datepicker/dist/react-datepicker.css';
-
 import isAfter from 'date-fns/is_after';
-import Highcharts from 'highcharts/highstock';
+import DayPickerComponent from './DayPickerComponent';
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import DayPicker from 'react-day-picker';
-
 import 'react-day-picker/lib/style.css';
-
 import MomentLocaleUtils, {
   formatDate,
   parseDate,
 } from 'react-day-picker/moment';
-
 import 'moment/locale/fi';
 
 class IndoorAir extends Component {
@@ -48,6 +41,8 @@ class IndoorAir extends Component {
     }
   }
 
+  //------------------------------------------------
+
   handleChangeStart = startDate => this.handleChange({ startDate });
   handleChangeEnd = endDate => this.handleChange({ endDate });
 
@@ -59,6 +54,8 @@ class IndoorAir extends Component {
     }
     this.setState({ startDate, endDate });
   };
+
+  //------------------------------------------------
 
   initLineChart(token, response) {
     var keyObjects = Object.keys(response.data[0].airData);
@@ -111,7 +108,6 @@ class IndoorAir extends Component {
   render() {
     return (
       <div className="body">
-      <Navbar/>
       <div className="chart-row2">
         <div className="chart-column full">
           <div className="chart">
@@ -143,6 +139,8 @@ class IndoorAir extends Component {
         <div className="chart-column full">
           <div className="controller">
             <label style={{display: 'block'}}>Etsi aikaväliltä</label>
+
+
             <div className="date-picker">
               <DayPickerInput
                 formatDate={formatDate}

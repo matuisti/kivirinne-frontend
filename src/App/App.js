@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import SideBar from './components/SideBar';
+import Navbar from './components/Navbar';
 import AuthenticatedComponent from './pages/login/AuthenticatedComponent';
 import IndoorAir from './pages/indoorAir/IndoorAir';
 import Login from './pages/login/Login';
@@ -17,6 +18,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/login' component={Login}/>
           <AuthenticatedComponent>
+            <Navbar/>
             <SideBar/>
             <Route exact path='/home' component={IndoorAir}/>
             <Route exact path='/camera' component={Camera}/>

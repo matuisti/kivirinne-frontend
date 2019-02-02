@@ -1,21 +1,16 @@
-.body {
-  --height: 100vh !important;
+.dashboard-body {
+  height: 100vh !important;
   margin-left: 180px;
-  --overflow: auto;
-  --background-color: rgba(0, 0, 0, 0.03);
-  --overflow: hidden;
-  --background-color: rgba(249,249,249,1);
+  margin-top: 70px;
 }
 
 .plain-chart-row1 {
-  margin-top: 70px;
   width: 98%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .plain-chart-row2 {
-  margin-top: 70px;
   width: 98%;
   margin-left: auto;
   margin-right: auto;
@@ -59,29 +54,46 @@
   width: 45px;
   height: 45px;
   position: absolute;
-  z-index: 100;
+  z-index: 1;
+}
+
+.chart-text p:nth-child(2) {
+  float: left;
+  margin-left: 64px;
+  margin-top: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  color: grey;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 45px;
+  height: 45px;
+  text-align: left;
+  position: absolute;
+  z-index: 1;
 }
 .chart-text i {
   display: inline-block;
   vertical-align: top;
   font-size: 10px;
 }
-.chart-text p:nth-child(2) {
+.chart-text p:nth-child(3) {
   float: left;
   margin-top: 5px;
   color: grey;
-  z-index: 100;
   position: absolute;
   margin-left: 15px;
   font-size: 12px;
   font-weight: bold;
 }
 
-.chart-text p:nth-child(3) {
+.chart-text p:nth-child(4) {
   float: right;
   margin-top: 5px;
   color: grey;
-  z-index: 100;
   margin-right: 20px;
   margin-top: 20px;
   font-size: 20px;

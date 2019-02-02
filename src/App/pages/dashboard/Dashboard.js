@@ -36,17 +36,21 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="body">
-        <Navbar/>
+      <div className="dashboard-body">
           <div className="plain-chart-row1">
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart1'} title={'Olohuone'} chartData={this.state.weekData1} />
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart2'} title={'Eteinen'} chartData={this.state.weekData2} />
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart3'} title={'Makuuhuone'} chartData={this.state.weekData3} />
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart1'} title={'Olohuone lämpotila'} chartData={this.state.weekData1} unit={'°C'} icon={'temperature-high'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart2'} title={'Eteinen lämpotila'} chartData={this.state.weekData2} unit={'°C'} icon={'temperature-high'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'tempChart3'} title={'Makuuhuone lämpotila'} chartData={this.state.weekData3} unit={'°C'} icon={'temperature-low'}/>
           </div>
           <div className="plain-chart-row1">
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart1'} title={'Olohuone'} chartData={this.state.weekData1} />
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart2'} title={'Eteinen'} chartData={this.state.weekData2} />
-            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart3'} title={'Makuuhuone'} chartData={this.state.weekData3} />
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart1'} title={'Olohuone kosteus'} chartData={this.state.weekData1} unit={'%'} icon={'tint'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart2'} title={'Eteinen kosteus'} chartData={this.state.weekData2} unit={'%'} icon={'tint'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'humidityChart3'} title={'Makuuhuone kosteus'} chartData={this.state.weekData3} unit={'%'} icon={'tint'}/>
+          </div>
+          <div className="plain-chart-row1">
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'electricChart'} title={'Sähkönkulutus'} chartData={this.state.weekData1} unit={'W'} icon={'bolt'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'waterFlowChart'} title={'Tuloveden virtaus'} chartData={this.state.weekData1} unit={'l/min'} icon={'water'}/>
+            <DashboardChartComponent loaded={this.state.lineLoad} chartName={'waterTempChart'} title={'Tuloveden lämpötila'} chartData={this.state.weekData1} unit={'°C'} icon={'thermometer-quarter'}/>
           </div>
       </div>
     );
