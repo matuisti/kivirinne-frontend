@@ -11,7 +11,7 @@ class LineChart extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     switch (this.props.base) {
       case 'plain':
         this.state.chartOptions = plainLineChartOptions(this.props);
@@ -23,7 +23,6 @@ class LineChart extends Component {
     }
 
     highchartsLaquageOptions();
-
     this.state.chartOptions.chart = new Highcharts[this.props.type || "Chart"](
       this.props.container,
       this.state.chartOptions
