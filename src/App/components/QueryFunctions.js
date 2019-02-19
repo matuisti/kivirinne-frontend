@@ -44,12 +44,11 @@ export default class QueryFunctions {
     getSensorDataBetweenTwoDays
   */
 
-  getSensorDataBetweenTwoDays(token, startDate, endDate, deviceId) {
+  getSensorDataBetweenTwoDays(token, startDate, endDate) {
     return axios.get('/api/get/sensorDataBetweenTwoDays', {
       params: {
         startDate: startDate,
-        endDate: endDate,
-        deviceId: deviceId
+        endDate: endDate
       },
       headers: {
         token: `${token}`

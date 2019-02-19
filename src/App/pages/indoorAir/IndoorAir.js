@@ -23,7 +23,6 @@ class IndoorAir extends Component {
       endDate: new Date()
     };
     this.sortChartDataByTime = this.sortChartDataByTime.bind(this);
-    this.tick = this.tick.bind(this);
     this.lineChartRef = React.createRef();
   }
 
@@ -51,7 +50,6 @@ class IndoorAir extends Component {
   //------------------------------------------------
 
   initLineChart(token, response) {
-    console.log(response);
     var keyObjects = Object.keys(response.data[0].airData);
     var colors = ['RGB(250, 128, 114)', 'RGB(93, 173, 226)']
     var params = [];
@@ -67,7 +65,15 @@ class IndoorAir extends Component {
         lineWidth: 2.5,
       };
     });
-    this.setState({lineChartData: params, lineLoad: true});
+
+    console.log(params);
+
+    this.api.getSensorDataBetweenTwoDays(token, '2019-02-07 10:00:00', '2019-02-18 12:00:00')
+    .then(response => {
+      this.setState({lineChartData: response.data, lineLoad: true});
+      console.log(response.data);
+    })
+    //this.setState({lineChartData: response.data, lineLoad: true});
   }
 
   initPieChart(token, response) {
@@ -79,46 +85,18 @@ class IndoorAir extends Component {
     this.setState({pieChartData: rawData, pieLoad: true})
   }
 
-  tick() {
-    const data = [
-      [1548969938000, 21],
-      [1548970804000, 20.7],
-      [1548971670000, 20.5],
-      [1548972543000, 20.4],
-      [1548976876000, 19.7],
-      [1548977749000, 19.6],
-      [1548983805000, 19.5],
-      [1548984672000, 19.5],
-      [1548988134000, 19.5],
-      [1548989004000, 19.5],
-      [1548989877000, 19.5],
-      [1548995073000, 19.4],
-      [1548995947000, 19.4],
-      [1549002011000, 19.5],
-      [1549002876000, 19.5]
-    ];
-
-    const data2 = data.map(x => [x[0], x[1] * 2]);
-
-    this.lineChartRef.current.state.chartOptions.chart.series[0].setData(data);
-    this.lineChartRef.current.state.chartOptions.chart.series[1].setData(data2);
-
-  }
-
   sortChartDataByTime() {
     this.state.startDate.setHours(0, 0, 0);
     this.state.endDate.setHours(23, 59, 0);
 
     let startDate = moment(this.state.startDate).format("YYYY-MM-DD HH:mm:ss");
     let endDate = moment(this.state.endDate).format("YYYY-MM-DD HH:mm:ss");
-    console.log(startDate);
-    console.log(endDate);
-    const sensorData = this.getSensorData(startDate, endDate, 1);
+    const sensorData = this.getSensorData(startDate, endDate);
   }
 
-  getSensorData(startDate, endDate, sensorId) {
+  getSensorData(startDate, endDate) {
     const token = this.Auth.getToken();
-    const sensorData = this.api.getSensorDataBetweenTwoDays(token, startDate, endDate, sensorId)
+    const sensorData = this.api.getSensorDataBetweenTwoDays(token, startDate, endDate)
     .then(response => {
       this.updateLineChart(response.data);
     })
@@ -126,26 +104,8 @@ class IndoorAir extends Component {
 
   updateLineChart(data) {
     console.log(data);
-    var keyObjects = Object.keys(data[0].airData);
-    var sensorDataArray = [];
-    keyObjects.forEach((key, index) => {
-      var rawData = data.map(item => {
-        return [((item.time + 7200) * 1000), item.airData[keyObjects[index]]];
-      });
-      sensorDataArray[index] = {
-        name: keyObjects[index],
-        data: rawData,
-        //color: colors[index],
-        type: 'line',
-        lineWidth: 2.5,
-      };
-    });
-    console.log(sensorDataArray[0].data);
-    console.log(this.lineChartRef.current.state.chartOptions.chart.series[0]);
-    this.lineChartRef.current.state.chartOptions.chart.series[0].setData(sensorDataArray[0].data);
-    this.lineChartRef.current.state.chartOptions.chart.series[1].setData(sensorDataArray[1].data);
-    //console.log(this.lineChartRef.current.state.chartOptions.chart.series.map(x => x.name));
-    //this.lineChartRef.current.state.chartOptions.chart.series[1].setData(data2);
+    //this.lineChartRef.current.state.chartOptions.chart.series[0].setData(data[0].data);
+    //this.lineChartRef.current.state.chartOptions.chart.series[1].setData(data[1].data);
   }
 
   componentDidMount() {
@@ -160,6 +120,7 @@ class IndoorAir extends Component {
       this.initLineChart(token, data);
       this.initPieChart(token, data);
     }).catch(error => {
+      console.error(error);
       this.handleError(error);
     })
   }
