@@ -21,6 +21,7 @@ function lineChartOptions(params) {
   const options = {
     chart: {
       zoomType: 'x',
+      type: 'spline',
       resetZoomButton: {
         position: {
           align: 'right',
@@ -32,7 +33,6 @@ function lineChartOptions(params) {
           stroke: 'silver',
           r: 5,
           states: {
-
             hover: {
               fill: '#EEEEEE',
               style: {
@@ -84,6 +84,16 @@ function lineChartOptions(params) {
       }
     },
     plotOptions: {
+      series: {
+        marker: {
+          enabled: true
+        },
+        states: {
+          hover: {
+            enabled: true
+          }
+        }
+      },
       area: {
         fillColor: {
           linearGradient: {
@@ -147,7 +157,6 @@ function gaugeChartOptions(params) {
     tooltip: {
       enabled: false,
     },
-
     pane: {
       startAngle: 0,
       endAngle: 360,

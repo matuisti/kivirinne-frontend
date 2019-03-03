@@ -1,16 +1,40 @@
-.sidebar {
-  padding-top: 75px;
+.sidebar-body {
   top: 0;
   left: 0;
-  position: fixed;
-  height: 100%;
-  background-color: rgba(54, 65, 80, 1);
+  background-color: rgba(39, 44, 50, 1);
   width: 180px;
-  overflow-x: hidden;
+  min-width: 180px;
   box-shadow: 4px 6px 8px 0px rgba(0,0,0,0.2);
+  height: 100vh;
+  position: sticky;
+  position: -webkit-sticky;
 }
 
-.sidebar i {
+.sidebar-title {
+  color: white;
+  display: inline-block !important;
+  height: 62px;
+  width: 100%;
+  font-size: 20px !important;
+  padding-top: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-title i:first-child {
+  margin-right: 14px;
+  margin-left: 10px;
+  margin-top: -7px;
+  font-size: 23px;
+  float: left;
+  background-color: grey;
+  color: white;
+  height: 42px;
+  width: 42px;
+  padding: 7px 7px 8px 8.5px;
+  border-radius: 50%;
+}
+
+.sidebar-body i {
   text-align: center;
   border-radius: 50%;
   height: 30px;

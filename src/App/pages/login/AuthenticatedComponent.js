@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import AuthService from '../../Authentication/AuthService';
+import './AuthenticatedComponent.css';
 
 class AuthenticatedComponent extends Component {
   constructor(props){
@@ -34,13 +35,13 @@ class AuthenticatedComponent extends Component {
   render() {
     if (this.state.user == null) {
       return (
-        <div className="App">
+        <div className="app-body">
           <div className="App-loader"/>
         </div>
       );
     }
     return (
-      <div>
+      <div className="authenticated-component-body">
         {this.props.children}
       </div>
     );

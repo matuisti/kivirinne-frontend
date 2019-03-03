@@ -6,8 +6,8 @@
   bottom: 0;
   position: fixed;
 }
+
 .header {
-  --background-color: #4D7C8A;
   background-color: rgba(54, 65, 80, 1);
   height: 70px;
   display: flex;
@@ -22,11 +22,10 @@
   letter-spacing: -1px;
   font-size: 24px;
 }
+
 .form-body {
   border-radius: 0px 0px 7px 7px;
-  --background-color: rgba(212, 215, 217);
   border-width: 0px 1px 1px 1px;
-  --border-color: #008DD5;
   border-color: rgba(54, 65, 80, 1);
   border-style: solid;
   width: 500px;

@@ -1,6 +1,4 @@
 .dashboard-body {
-  height: 100vh !important;
-  margin-left: 180px;
   margin-top: 70px;
 }
 
@@ -23,10 +21,6 @@
   flex-direction: column;
   justify-content: center;
   padding: 8px;
-}
-
-.orange {
-  background-color: orange;
 }
 
 .plain-chart-row1 .plain-chart-column .chart-text {
@@ -144,23 +138,20 @@
   width: 33.3%;
 }
 
-
 .chart_rows:after {
   content: "";
   display: table;
   clear: both;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 660px) {
   .plain-chart-row1 .plain-chart-column.side, .plain-chart-row1 .plain-chart-column.plain {
     width: 100%;
   }
   .plain-chart-row2 .plain-chart-column.side, .plain-chart-row2 .plain-chart-column.plain {
     width: 100%;
   }
-  .body {
-    margin-left: 0;
-  }
+
 }
 
 @media screen and (min-width: 1300px) {

@@ -33,8 +33,6 @@ class IndoorAir extends Component {
     }
   }
 
-  //------------------------------------------------
-
   handleChangeStart = startDate => this.handleChange({ startDate });
   handleChangeEnd = endDate => this.handleChange({ endDate });
 
@@ -47,33 +45,13 @@ class IndoorAir extends Component {
     this.setState({ startDate, endDate });
   };
 
-  //------------------------------------------------
-
   initLineChart(token, response) {
-    var keyObjects = Object.keys(response.data[0].airData);
-    var colors = ['RGB(250, 128, 114)', 'RGB(93, 173, 226)']
-    var params = [];
-    keyObjects.forEach((key, index) => {
-      var rawData = response.data.map(item => {
-        return [((item.time + 7200) * 1000), item.airData[keyObjects[index]]];
-      });
-      params[index] = {
-        name: keyObjects[index],
-        data: rawData,
-        color: colors[index],
-        type: 'line',
-        lineWidth: 2.5,
-      };
-    });
-
-    console.log(params);
-
-    this.api.getSensorDataBetweenTwoDays(token, '2019-02-07 10:00:00', '2019-02-18 12:00:00')
+    const time = this.timeFormatter(this.state.startDate, this.state.endDate);
+    this.api.getSensorDataBetweenTwoDays(token, '2019-01-01 00:00:00', time.endDate)
     .then(response => {
-      this.setState({lineChartData: response.data, lineLoad: true});
+      this.setState({ lineChartData: response.data, lineLoad: true });
       console.log(response.data);
     })
-    //this.setState({lineChartData: response.data, lineLoad: true});
   }
 
   initPieChart(token, response) {
@@ -85,13 +63,20 @@ class IndoorAir extends Component {
     this.setState({pieChartData: rawData, pieLoad: true})
   }
 
-  sortChartDataByTime() {
-    this.state.startDate.setHours(0, 0, 0);
-    this.state.endDate.setHours(23, 59, 0);
+  timeFormatter(startDate, endDate) {
+    startDate.setHours(0, 0, 0);
+    endDate.setHours(23, 59, 0);
+    const formattedDate = {
+      startDate: moment(startDate).format("YYYY-MM-DD HH:mm:ss"),
+      endDate: moment(endDate).format("YYYY-MM-DD HH:mm:ss")
+    };
+    return formattedDate;
+  }
 
-    let startDate = moment(this.state.startDate).format("YYYY-MM-DD HH:mm:ss");
-    let endDate = moment(this.state.endDate).format("YYYY-MM-DD HH:mm:ss");
-    const sensorData = this.getSensorData(startDate, endDate);
+
+  sortChartDataByTime() {
+    const time = this.timeFormatter(this.state.startDate, this.state.endDate);
+    const sensorData = this.getSensorData(time.startDate, time.endDate);
   }
 
   getSensorData(startDate, endDate) {
@@ -99,13 +84,14 @@ class IndoorAir extends Component {
     const sensorData = this.api.getSensorDataBetweenTwoDays(token, startDate, endDate)
     .then(response => {
       this.updateLineChart(response.data);
+      console.log(response.data);
     })
   }
 
   updateLineChart(data) {
-    console.log(data);
-    //this.lineChartRef.current.state.chartOptions.chart.series[0].setData(data[0].data);
-    //this.lineChartRef.current.state.chartOptions.chart.series[1].setData(data[1].data);
+    data.map((chart, index) => {
+      this.lineChartRef.current.state.chartOptions.chart.series[index].setData(chart.data);
+    });
   }
 
   componentDidMount() {
@@ -119,6 +105,7 @@ class IndoorAir extends Component {
     }).then(data => {
       this.initLineChart(token, data);
       this.initPieChart(token, data);
+      setInterval(() => this.sortChartDataByTime(), 150000);
     }).catch(error => {
       console.error(error);
       this.handleError(error);
@@ -127,7 +114,7 @@ class IndoorAir extends Component {
 
   render() {
     return (
-      <div className="body">
+      <div className="indoor-air-body">
       <div className="chart-row2">
         <div className="chart-column full">
           <div className="chart">

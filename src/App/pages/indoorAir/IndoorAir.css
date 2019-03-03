@@ -1,10 +1,8 @@
-.body {
-  --height: 100vh !important;
-  margin-left: 180px;
+.indoor-air-body {
+  margin-top: 70px;
 }
 
 .chart-row1, .chart-row2 {
-  margin-top: 70px;
   width: 98%;
   margin-left: auto;
   margin-right: auto;
