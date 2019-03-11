@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import AuthService from '../Authentication/AuthService';
+import AuthService from '../../Authentication/AuthService';
 import classNames from 'classnames';
 import 'font-awesome/css/font-awesome.min.css';
 import './Navbar.css';
@@ -10,7 +10,8 @@ class Navbar extends Component {
     super();
     this.Auth = new AuthService();
     this.state = {
-      dropDown: false
+      dropDown: false,
+      sideBarVisible: false
     }
   }
 
@@ -39,9 +40,15 @@ class Navbar extends Component {
     return (
       <div className="topnav-body">
       <div className="topnav">
-        <a className="topnav-title "><i className="fa fa-fort-awesome"></i>Kivirinne</a>
+        <a className="topnav-title">
+          <i className="fa fa-fort-awesome"></i>Kivirinne
+        </a>
+        <button className="topnav-sidebar-btn" onClick={(e) => this.props.handleVisible(e)}>
+          <i className="fa fa-bars"></i>
+        </button>
         <div className="dropdown">
-          <button className="dropbtn" onClick={this.dropDown.bind(this)}>Asetukset
+          <button className="dropbtn" onClick={this.dropDown.bind(this)}>
+            Asetukset
             <i className={arrowClasses}></i>
           </button>
           </div>
@@ -59,5 +66,3 @@ class Navbar extends Component {
 }
 
 export default withRouter(Navbar);
-
-//{this.state.dropDown ? 'toggleOn' :  'toggleOff' + " " + "dropdown-content"}

@@ -3,6 +3,8 @@
   height: 100%;
   width: 100%;
   z-index: 0;
+  margin: 0 auto;
+  display: block;
 }
 
 .container {
@@ -10,15 +12,18 @@
   max-width: 800px;
   height: 400px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .line-chart-wrapper {
   height: 100%;
   width: 100%;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   position: relative;
+  margin: 0 auto;
 }
 
 .pie-chart-body {

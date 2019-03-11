@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class AuthService {
 
   login(username, password) {
-    return axios.post('/users/login', {
+    return axios.post('api/users/login', {
       email: username,
       password: password
     })
@@ -26,7 +26,7 @@ export default class AuthService {
   }
 
   getUser(token) {
-    return axios.get('/users/getUsers', {
+    return axios.get('api/users/getUsers', {
       headers: {
         token: `${token}`
       }

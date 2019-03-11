@@ -1,5 +1,6 @@
 .topnav-body {
   position: fixed;
+  z-index: 100;
   width: 100%;
   left: 0;
   right: 0;
@@ -24,6 +25,13 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.topnav-sidebar-btn {
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
 }
 
 .topnav-title {
@@ -75,7 +83,7 @@
 }
 
 .rotate {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .dropbtn:hover {
@@ -101,7 +109,6 @@
   position: absolute;
   background-color: white;
   min-width: 170px;
-  --box-shadow: 2px 2px 7px 2px rgba(0,0,0,0.2);
   box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.2);
   top: 62px;
   border-radius: 0px 0px 0px 5px;
@@ -126,7 +133,6 @@
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  --background-color: rgba(0, 0, 0, 0.05);
   color: black;
 }
 

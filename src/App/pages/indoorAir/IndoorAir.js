@@ -73,7 +73,6 @@ class IndoorAir extends Component {
     return formattedDate;
   }
 
-
   sortChartDataByTime() {
     const time = this.timeFormatter(this.state.startDate, this.state.endDate);
     const sensorData = this.getSensorData(time.startDate, time.endDate);
@@ -105,7 +104,7 @@ class IndoorAir extends Component {
     }).then(data => {
       this.initLineChart(token, data);
       this.initPieChart(token, data);
-      setInterval(() => this.sortChartDataByTime(), 150000);
+      //setInterval(() => this.sortChartDataByTime(), 150000);
     }).catch(error => {
       console.error(error);
       this.handleError(error);
@@ -142,28 +141,6 @@ class IndoorAir extends Component {
         </div>
       </div>
 
-      <div className="chart-controller">
-        <div className="chart-column full">
-          <div className="controller">
-            <label style={{display: 'block'}}>Etsi aikaväliltä</label>
-            <DayPickerComponent
-              placeholder={''}
-              onDayChange={this.handleChangeStart}
-              selectedDays={this.state.startDate}
-              disabledDays={this.state.endDate}
-              mode={'after'} />
-            -
-            <DayPickerComponent
-              placeholder={''}
-              onDayChange={this.handleChangeEnd}
-              selectedDays={this.state.endDate}
-              disabledDays={this.state.startDate}
-              mode={'before'} />
-
-            <button onClick={this.sortChartDataByTime}>Etsi</button>
-          </div>
-        </div>
-      </div>
       <div className="chart-row1">
         <div className="chart-column full">
           <div className="chart">
@@ -174,6 +151,31 @@ class IndoorAir extends Component {
             }
           </div>
         </div>
+      </div>
+
+      <div className="chart-controller">
+        {
+        // <div className="chart-column full">
+        //   <div className="controller">
+        //     <label style={{display: 'block'}}>Etsi aikaväliltä</label>
+        //     <DayPickerComponent
+        //       placeholder={''}
+        //       onDayChange={this.handleChangeStart}
+        //       selectedDays={this.state.startDate}
+        //       disabledDays={this.state.endDate}
+        //       mode={'after'} />
+        //     -
+        //     <DayPickerComponent
+        //       placeholder={''}
+        //       onDayChange={this.handleChangeEnd}
+        //       selectedDays={this.state.endDate}
+        //       disabledDays={this.state.startDate}
+        //       mode={'before'} />
+        //
+        //     <button onClick={this.sortChartDataByTime}>Etsi</button>
+        //   </div>
+        // </div>
+      }
       </div>
     </div>
     );

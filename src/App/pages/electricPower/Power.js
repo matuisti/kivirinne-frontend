@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/Navbar';
-import LineChart from '../../components/charts/LineChart';
-import PieChart from '../../components/charts/PieChart';
 import AuthService from '../../Authentication/AuthService';
 import QueryFunctions from '../../components/QueryFunctions';
-import Highcharts from 'highcharts/highstock';
+import ReactLineChart from '../../components/charts/ReactLineChart';
 
 class Power extends Component {
   constructor(props) {
@@ -13,66 +10,29 @@ class Power extends Component {
     this.Query = new QueryFunctions();
     this.state = {
       lineLoad: false,
-      pieLoad: false,
-      rawData: null,
-      lineChartData: null,
-      pieChartData: null,
+      simulatedData: [{
+        data:[[1551465996000,20.5],[1551466859000,19.2],[1551467734000,19.2],[1551468607000,19.1],[1551469483000,18.9],[1551470359000,90.7]],
+        name: "testiii"
+      }]
     }
-  }
-
-  handleError(error) {
-    if (error.response.status === 500) {
-      this.Auth.logOut();
-      this.props.history.push('/login');
-    }
-  }
-
-  initLineChart(token, response) {
-      var keyObjects = Object.keys(response.data[0].airData);
-      var colors = ['RGB(250, 128, 114)', 'RGB(93, 173, 226)']
-      var params = [];
-      keyObjects.forEach((key, index) => {
-        var rawData = response.data.map(item => {
-          return [((item.time + 7200) * 1000), item.airData[keyObjects[index]]];
-        });
-        params[index] = {
-          name: keyObjects[index],
-          data: rawData,
-          color: colors[index],
-          type: 'line',
-          lineWidth: 2.5,
-        };
-      });
-      this.setState({lineChartData: params, lineLoad: true})
-  }
-
-  initPieChart(token, response) {
-      var airObjects = Object.keys(response.data[0].airData);
-      var rawData = [
-        { name: "Lämpötila", data:response.data[response.data.length -1].airData.temperature },
-        { name: "Kosteus", data:response.data[response.data.length -1].airData.humidity }
-      ];
-      this.setState({pieChartData: rawData, pieLoad: true})
   }
 
   componentDidMount() {
-    var token = this.Auth.getToken();
-    this.Query.getDhtData(token, 1, 'YEAR')
-    .then(response => {
-      console.log(response.data)
-      this.setState({
-        rawData: response.data
-      })
-      return response;
-    }).then(data => {
-      this.initLineChart(token, data);
-      this.initPieChart(token, data);
-    }).catch(error => {
-      this.handleError(error);
+    this.setState({
+      lineLoad: true
     })
+    console.log(this.state.simulatedData);
   }
 
   render() {
+    const options = {
+      title: {
+        text: 'My chart'
+      },
+      series: [{
+        data: [1, 2, 3]
+      }]
+    };
     return (
       <div className="body">
       <div className="chart-row1">
@@ -81,7 +41,7 @@ class Power extends Component {
             {
               !this.state.lineLoad
                 ? <div className="Graph-loader"/>
-              : <LineChart container="ElectricMeterChart" type="Chart" title="Sähkönkulutus" base="full" data={this.state.lineChartData} />
+                : <ReactLineChart options={options} />
             }
           </div>
         </div>

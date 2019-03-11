@@ -16,6 +16,16 @@ body {
 .component-body {
   flex: 1;
   flex-grow: 1;
+  width: 100%;
+}
+
+.component-body-sidebar-active {
+  padding-left: 180px;
+  display: block;
+}
+
+.component-body-sidebar-hidden {
+  padding-left: 0px;
 }
 
 .App-loader {
@@ -44,4 +54,24 @@ body {
   margin: auto;
   z-index: 1;
   position: relative;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Safari */
+@-webkit-keyframes spin-loader {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin-loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

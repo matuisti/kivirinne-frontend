@@ -17,7 +17,7 @@ function highchartsLaquageOptions() {
 }
 
 function lineChartOptions(params) {
-
+  var yAxisMax = params.yAxisMax || 100;
   const options = {
     chart: {
       zoomType: 'x',
@@ -50,11 +50,14 @@ function lineChartOptions(params) {
       x: 30
     },
     yAxis: {
+      max: yAxisMax,
+      tickInterval: 10,
       title: {
         enabled: false
       }
     },
     xAxis: {
+      tickPixelInterval: 75,
       type: 'datetime',
       dateTimeLabelFormats: {
         millisecond: '%H:%M:%S.%L',
@@ -86,11 +89,15 @@ function lineChartOptions(params) {
     plotOptions: {
       series: {
         marker: {
-          enabled: true
+          symbol: 'point',
+          radius: 3,
+          enabled: false
         },
+        lineWidth: 2.5,
         states: {
           hover: {
-            enabled: true
+            enabled: true,
+            lineWidth: 3.5
           }
         }
       },
@@ -111,28 +118,130 @@ function lineChartOptions(params) {
             ]
           ]
         },
-        marker: {
-          radius: 2
-        },
-        lineWidth: 2,
-        states: {
-          hover: {
-            lineWidth: 1
-          }
-        },
         threshold: null
       }
     },
     series: params.data
-    // series: [{
-    //   type: 'area',
-    //   showInLegend: false,
-    //   name: "Kosteus", // Example lämpötila
-    //   data: params.data // Dataset
-    // }]
   };
   return options;
 }
+
+
+function weatherChartOptions(params) {
+  const options = {
+    chart: {
+      zoomType: 'x',
+      type: 'area',
+      margin: [30, 10, 20, 10],
+      resetZoomButton: {
+        position: {
+          align: 'right',
+          x: 0,
+          y: -25
+        },
+        theme: {
+          fill: 'white',
+          stroke: 'silver',
+          r: 5,
+          states: {
+            hover: {
+              fill: '#EEEEEE',
+              style: {
+                color: 'black',
+              }
+            }
+          }
+        }
+      }
+    },
+    title: {
+      text: params.title,
+      align: 'left',
+      margin: 0,
+      x: 40
+    },
+    yAxis: {
+      gridLineWidth: 0,
+      labels: {
+        align: 'left',
+        x: 0,
+        y: -1,
+        formatter: function() {
+          return this.value + '°';
+        }
+      },
+      max: params.yAxisMax,
+      min: params.yAxisMin,
+      //tickInterval: 10,
+      title: {
+        enabled: false
+      }
+    },
+    xAxis: {
+      tickWidth: 0,
+      lineWidth: 0,
+      gridLineWidth: 0,
+      labels: {
+        x: 0,
+        y: 14
+      },
+      tickPixelInterval: 100,
+      type: 'datetime',
+      dateTimeLabelFormats: {
+        millisecond: '%H:%M:%S.%L',
+        second: '%H:%M:%S',
+        minute: '%H:%M',
+        hour: '%H:%M',
+        day: '%e. %b',
+        week: '%e. %b',
+        month: '%b \'%y',
+        year: '%Y'
+      }
+    },
+    navigator: {
+      enabled: false
+    },
+    credits: {
+      enabled: false
+    },
+    rangeSelector: {
+      selected: 4,
+      inputEnabled: false,
+      buttonTheme: {
+        visibility: 'hidden'
+      },
+      labelStyle: {
+        visibility: 'hidden'
+      }
+    },
+    plotOptions: {
+      series: {
+        color: 'rgba(249, 203, 2, 1)',
+        fillOpacity: 0.1,
+        marker: {
+          symbol: 'point',
+          radius: 3,
+          enabled: false
+        },
+        states: {
+          hover: {
+            enabled: true,
+            lineWidth: 3
+          }
+        }
+      },
+      area: {
+        threshold: null
+      }
+    },
+    legend: {
+      enabled: false
+    },
+    series: params.data
+  };
+  return options;
+}
+
 
 function gaugeChartOptions(params) {
   const options = {
@@ -178,7 +287,6 @@ function gaugeChartOptions(params) {
         //shape: 'arc'
       }]
     },
-
     yAxis: {
       min: 0,
       max: 100,
@@ -289,5 +397,6 @@ export {
   lineChartOptions,
   gaugeChartOptions,
   plainLineChartOptions,
-  highchartsLaquageOptions
+  highchartsLaquageOptions,
+  weatherChartOptions
 };

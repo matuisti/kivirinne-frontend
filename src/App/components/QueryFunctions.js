@@ -5,9 +5,8 @@ export default class QueryFunctions {
   /*
     login
   */
-
   login(username, password) {
-    return axios.post('/users/login', {
+    return axios.post('/api/users/login', {
       email: username,
       password: password
     })
@@ -20,9 +19,8 @@ export default class QueryFunctions {
   /*
     getDhtData
   */
-
   getDhtData(token, interval, intervalformat) {
-    return axios.get('/api/get/dht', {
+    return axios.get('/api/devicedata/get/dht', {
       params: {
         interval: interval,
         intervalformat: intervalformat
@@ -43,9 +41,8 @@ export default class QueryFunctions {
   /*
     getSensorDataBetweenTwoDays
   */
-
   getSensorDataBetweenTwoDays(token, startDate, endDate) {
-    return axios.get('/api/get/sensorDataBetweenTwoDays', {
+    return axios.get('/api/devicedata/get/sensorDataBetweenTwoDays', {
       params: {
         startDate: startDate,
         endDate: endDate
@@ -66,9 +63,8 @@ export default class QueryFunctions {
   /*
     getCurrentSensordata
   */
-
   getCurrentSensordata(token) {
-    return axios.get('/api/get/currentsensordata', {
+    return axios.get('/api/devicedata/get/currentsensordata', {
       headers: {
         token: `${token}`
       }
@@ -87,7 +83,7 @@ export default class QueryFunctions {
   */
 
   getWeatherForecast() {
-    return axios.get('http://api.openweathermap.org/data/2.5/forecast?id=654047&APPID=cb00db7a6e3bddca1986870cb15a0dfe')
+    return axios.get('http://api.openweathermap.org/data/2.5/forecast?id=654047&&units=metric&APPID=cb00db7a6e3bddca1986870cb15a0dfe')
     .then(function (response) {
       return Promise.resolve(response);
     })

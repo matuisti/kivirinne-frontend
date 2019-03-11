@@ -40,11 +40,9 @@ class AuthenticatedComponent extends Component {
         </div>
       );
     }
-    return (
-      <div className="authenticated-component-body">
-        {this.props.children}
-      </div>
-    );
+
+    return this.props.children;
+
   }
 }
 export default withRouter(AuthenticatedComponent);

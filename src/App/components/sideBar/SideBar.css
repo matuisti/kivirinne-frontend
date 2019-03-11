@@ -2,12 +2,23 @@
   top: 0;
   left: 0;
   background-color: rgba(39, 44, 50, 1);
-  width: 180px;
-  min-width: 180px;
   box-shadow: 4px 6px 8px 0px rgba(0,0,0,0.2);
   height: 100vh;
-  position: sticky;
-  position: -webkit-sticky;
+  width: 180px;
+  position: fixed;
+  display: block;
+}
+
+.sidebar-body-hidden {
+  visibility: hidden;
+  margin-left: -180px;
+  transition: visibility 250ms step-end, margin-left 250ms ease-out;
+}
+
+.sidebar-body-visible {
+  visibility: visible;
+  margin-left: 0px;
+  transition: margin-left 250ms ease-out;
 }
 
 .sidebar-title {
@@ -66,6 +77,8 @@
   background-color: rgba(255,255,255,0.1);
   text-decoration: none;
   color: white;
+  --border-top: 1px solid lightGrey;
+  --border-bottom: 1px solid lightGrey;
 }
 
 @media screen and (max-width: 600px) {

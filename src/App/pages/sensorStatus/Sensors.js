@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../../components/Navbar';
 import QueryFunctions from '../../components/QueryFunctions';
 import AuthService from '../../Authentication/AuthService';
 
