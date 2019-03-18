@@ -19,7 +19,7 @@ body {
   width: 100%;
 }
 
-.component-body-sidebar-active {
+.component-body-sidebar {
   padding-left: 180px;
   display: block;
 }
@@ -54,6 +54,12 @@ body {
   margin: auto;
   z-index: 1;
   position: relative;
+}
+
+@media screen and (max-width: 812px) {
+  .component-body-sidebar {
+    padding-left: 0px;
+  }
 }
 
 @keyframes App-logo-spin {

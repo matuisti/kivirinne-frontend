@@ -81,8 +81,8 @@
   --border-bottom: 1px solid lightGrey;
 }
 
-@media screen and (max-width: 600px) {
-  .sidebar {
+@media screen and (max-width: 812px) {
+  .sidebar-body {
     display: none;
   }
 }
