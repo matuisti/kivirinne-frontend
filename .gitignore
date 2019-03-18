@@ -3,7 +3,5 @@ logs
 *.log
 npm-debug.log*
 
-build/Release
-
+build/
 node_modules/
-
