@@ -47,10 +47,9 @@ class IndoorAir extends Component {
 
   initLineChart(token, response) {
     const time = this.timeFormatter(this.state.startDate, this.state.endDate);
-    this.api.getSensorDataBetweenTwoDays(token, '2019-01-01 00:00:00', time.endDate)
-    .then(response => {
+    this.api.getSensorDataBetweenTwoDays(token, time.startDate, time.endDate).then(response => {
       this.setState({ lineChartData: response.data, lineLoad: true });
-      console.log(response.data);
+      //console.log(response.data);
     })
   }
 
@@ -83,7 +82,7 @@ class IndoorAir extends Component {
     const sensorData = this.api.getSensorDataBetweenTwoDays(token, startDate, endDate)
     .then(response => {
       this.updateLineChart(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     })
   }
 
@@ -114,40 +113,48 @@ class IndoorAir extends Component {
   render() {
     return (
       <div className="indoor-air-body">
-      <div className="chart-row2">
-        <div className="chart-column full">
-          <div className="chart">
-            {
-              !this.state.pieLoad ? <div className="Graph-loader"/> :
-              <div>
-              <div style={{float: 'left'}}>
-                <label style={{display: 'block'}}>Keittiö</label>
-                <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
-                <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
-              </div>
-              <div style={{float: 'left'}}>
-                <label style={{display: 'block'}}>Eteinen</label>
-                <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
-                <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
-              </div>
-              <div style={{float: 'left'}}>
-                <label style={{display: 'block'}}>Olohuone</label>
-                <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
-                <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
-              </div>
-              </div>
-            }
-          </div>
-        </div>
-      </div>
-
+      {
+      // <div className="chart-row2">
+      //   <div className="chart-column full">
+      //     <div className="chart">
+      //       {
+      //         !this.state.pieLoad ? <div className="Graph-loader"/> :
+      //         <div>
+      //         <div style={{float: 'left'}}>
+      //           <label style={{display: 'block'}}>Keittiö</label>
+      //           <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
+      //           <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
+      //         </div>
+      //         <div style={{float: 'left'}}>
+      //           <label style={{display: 'block'}}>Eteinen</label>
+      //           <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
+      //           <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
+      //         </div>
+      //         <div style={{float: 'left'}}>
+      //           <label style={{display: 'block'}}>Olohuone</label>
+      //           <CircularProgressBar type={'temp'} percentage={this.state.pieChartData[0].data} unit={'°C'} clockwise={false} />
+      //           <CircularProgressBar type={'hum'} percentage={this.state.pieChartData[1].data} unit={'%'} clockwise={false} />
+      //         </div>
+      //         </div>
+      //       }
+      //     </div>
+      //   </div>
+      // </div>
+      }
       <div className="chart-row1">
         <div className="chart-column full">
           <div className="chart">
             {
               !this.state.lineLoad
                 ? <div className="Graph-loader"/>
-              : <LineChart container="lineChart1" ref={this.lineChartRef} type="Chart" title="Sisäilma" base="full" data={this.state.lineChartData} />
+              : <LineChart
+                  container="lineChart1"
+                  ref={this.lineChartRef}
+                  type="Chart"
+                  title=""
+                  base="full"
+                  data={this.state.lineChartData}
+                />
             }
           </div>
         </div>
@@ -155,26 +162,26 @@ class IndoorAir extends Component {
 
       <div className="chart-controller">
         {
-        // <div className="chart-column full">
-        //   <div className="controller">
-        //     <label style={{display: 'block'}}>Etsi aikaväliltä</label>
-        //     <DayPickerComponent
-        //       placeholder={''}
-        //       onDayChange={this.handleChangeStart}
-        //       selectedDays={this.state.startDate}
-        //       disabledDays={this.state.endDate}
-        //       mode={'after'} />
-        //     -
-        //     <DayPickerComponent
-        //       placeholder={''}
-        //       onDayChange={this.handleChangeEnd}
-        //       selectedDays={this.state.endDate}
-        //       disabledDays={this.state.startDate}
-        //       mode={'before'} />
-        //
-        //     <button onClick={this.sortChartDataByTime}>Etsi</button>
-        //   </div>
-        // </div>
+        <div className="chart-column full">
+          <div className="controller">
+            <label style={{display: 'block'}}>Etsi aikaväliltä</label>
+            <DayPickerComponent
+              placeholder={''}
+              onDayChange={this.handleChangeStart}
+              selectedDays={this.state.startDate}
+              disabledDays={this.state.endDate}
+              mode={'after'} />
+            -
+            <DayPickerComponent
+              placeholder={''}
+              onDayChange={this.handleChangeEnd}
+              selectedDays={this.state.endDate}
+              disabledDays={this.state.startDate}
+              mode={'before'} />
+
+            <button onClick={this.sortChartDataByTime}>Etsi</button>
+          </div>
+        </div>
       }
       </div>
     </div>

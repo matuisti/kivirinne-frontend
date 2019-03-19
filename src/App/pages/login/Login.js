@@ -9,6 +9,8 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.Auth = new AuthService();
     this.state = {
+      errorVisible: false,
+      errorMessage: null,
       data: []
     }
   }
@@ -19,24 +21,33 @@ class Login extends Component {
     })
   }
 
+  handleErrorMessage(message) {
+    this.setState({
+      errorVisible: true,
+      errorMessage: message
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
     if (this.state.email && this.state.password) {
-      this.Auth.login(this.state.email, this.state.password)
-        .then(response => {
+      this.Auth.login(this.state.email, this.state.password).then(response => {
+        if (response.data.error === 0) {
           this.props.history.push('/dashboard');
-        })
-        .catch(err => {
-          alert(err);
-        })
+        } else if (response.data.error === 1) {
+          this.handleErrorMessage('Sähköposti ja salasana ei täsmää');
+        }
+      })
+      .catch(error => {
+        this.handleErrorMessage('Jokin taisi mennä vikaan, yritä uudestaan päivittämällä sivu');
+      })
     } else {
-      alert("Täytä molemmat kentät");
+      this.handleErrorMessage('Täytä molemmat kentät');
     }
   }
 
   render() {
-
     return (
       <div className="login-body">
         <div className="form-header"></div>
@@ -57,6 +68,11 @@ class Login extends Component {
                 name="password"
                 placeholder="Salasana"
                 onChange={this.handleInputChange}/>
+              { this.state.errorVisible &&
+                <div className="login-error-label">
+                  {this.state.errorMessage}
+                </div>
+              }
               <input
                 className="form-btn"
                 type="submit"

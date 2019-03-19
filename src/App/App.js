@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    let componentBodyClasses = classNames(this.state.visible ? 'component-body-sidebar':'component-body-sidebar-hidden', 'component-body');
+    var componentBodyClasses = classNames(this.state.visible ? 'component-body-sidebar':'component-body-sidebar-hidden', 'component-body');
     return (
       <div className="app-body">
         <Switch>

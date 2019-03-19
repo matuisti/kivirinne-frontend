@@ -21,7 +21,9 @@ function lineChartOptions(params) {
   const options = {
     chart: {
       zoomType: 'x',
-      type: 'spline',
+      //type: 'spline',
+      type: 'area',
+      //margin: [20, 5, 25, 10],
       resetZoomButton: {
         position: {
           align: 'right',
@@ -50,11 +52,18 @@ function lineChartOptions(params) {
       x: 30
     },
     yAxis: {
-      max: yAxisMax,
+      //max: yAxisMax,
       tickInterval: 10,
+      gridLineDashStyle: 'longdash',
+      //gridLineColor: '',
       title: {
         enabled: false
-      }
+      },
+      labels: {
+        align: 'left',
+        x: -5,
+        y: 2.5,
+      },
     },
     xAxis: {
       tickPixelInterval: 75,
@@ -101,25 +110,25 @@ function lineChartOptions(params) {
           }
         }
       },
-      area: {
-        fillColor: {
-          linearGradient: {
-            x1: 0,
-            y1: 0,
-            x2: 0,
-            y2: 1
-          },
-          stops: [
-            [
-              0, Highcharts.getOptions().colors[0]
-            ],
-            [
-              1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')
-            ]
-          ]
-        },
-        threshold: null
-      }
+      // area: {
+      //   fillColor: {
+      //     linearGradient: {
+      //       x1: 0,
+      //       y1: 0,
+      //       x2: 0,
+      //       y2: 1
+      //     },
+      //     stops: [
+      //       [
+      //         0, Highcharts.getOptions().colors[0]
+      //       ],
+      //       [
+      //         1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')
+      //       ]
+      //     ]
+      //   },
+      //   threshold: null
+      // }
     },
     series: params.data
   };
@@ -220,8 +229,18 @@ function weatherChartOptions(params) {
         fillOpacity: 0.1,
         marker: {
           symbol: 'point',
-          radius: 3,
-          enabled: false
+          radius: 3.5,
+          enabled: true
+        },
+        dataLabels: {
+          align: 'center',
+          enabled: true,
+          style: {
+            fontWeight: 'light',
+            color: 'grey',
+            fontSize: 10,
+          }
+
         },
         states: {
           hover: {

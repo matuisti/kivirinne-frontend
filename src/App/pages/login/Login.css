@@ -37,7 +37,7 @@
 
 .form-body label {
   float: left;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 18px;
   margin-left: 5px;
 }
@@ -52,10 +52,8 @@ input:-webkit-autofill {
   height: 50px;
   width: 500px;
   margin-top: 70px;
-  --background-color: #008DD5;
   background-color: rgba(54, 65, 80, 1);
   border-radius: 7px 7px 0px 0px;
-  --color: 008DD5;
 }
 
 .form-input {
@@ -68,6 +66,9 @@ input:-webkit-autofill {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: initial;
+  font-weight: 600;
+  font-size: 14px;
+  outline: none;
   transition: border-color 200ms linear;
 }
 
@@ -78,9 +79,9 @@ input:-webkit-autofill {
 
 .form-btn {
     width: 100%;
-    --background-color: #008DD5;
     background-color: rgba(54, 65, 80, 1);
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 500;
     color: white;
     padding: 8px 20px;
     margin: 12px 0;
@@ -88,11 +89,24 @@ input:-webkit-autofill {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 200ms linear;
+    outline: none;
 }
 
 .form-btn:hover {
     background-color: #1e4ea3;
     transition: background-color 200ms linear;
+}
+
+.login-error-label {
+  width: 100%;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 12px;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 600px) {
@@ -104,7 +118,6 @@ input:-webkit-autofill {
     padding-top: 20px;
   }
   .form-header {
-    --display: none;
     width: 100%;
     margin-top: 0;
     border-radius: 0;
